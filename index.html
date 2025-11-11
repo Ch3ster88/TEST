@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #f1f1f1;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #00bfff;
+      margin-bottom: 30px;
+    }
+
+    /* Caja de categoría */
+    .category-box {
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin: 40px auto 10px auto;
+      max-width: 1200px;
+      box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
+      transition: box-shadow 0.3s, transform 0.2s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px; /* espacio entre icono y texto */
+    }
+
+    /* Franja diagonal amarilla */
+.addon-badge {
+    position: absolute;
+    top: 10px; /* Separado del borde superior */
+    right: 50px; /* Separado del borde derecho */
+    width: 60px; /* Tamaño del círculo más grande */
+    height: 60px; /* Tamaño del círculo más grande */
+    background: #ffcc00; /* Color de fondo amarillo */
+    color: #000; /* Color del texto */
+    font-family: 'Poppins', sans-serif; /* Fuente 'Poppins' */
+    font-weight: bold; /* Letra en negrita */
+    font-size: 0.9em; /* Tamaño de la letra un poco más pequeño */
+    display: flex;
+    justify-content: center; /* Centra el texto horizontalmente */
+    align-items: center; /* Centra el texto verticalmente */
+    border-radius: 50%; /* Hace que el contenedor sea un círculo */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más suave y sutil */
+    pointer-events: none;
+    text-align: center;
+    white-space: nowrap;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Efecto suave */
+}
+
+/* Efecto hover: cambia el color y aumenta el tamaño */
+.addon-badge:hover {
+    background: #e6b800; /* Cambio de color al pasar el ratón */
+    transform: scale(1.1); /* Hace que el círculo crezca un poco */
+}
+
+
+
+    /* Aseguramos que la tarjeta tenga position relative */
+    .apk-item {
+      background-color: #1e1e1e;
+      padding: 15px;
+      border-radius: 10px;
+      transition: transform 0.2s, background-color 0.3s;
+      position: relative; /* Asegura que el addon se posicione correctamente */
+      overflow: hidden; /* Asegura que el badge no se desborde visualmente */
+    }
+
+    .category-box span.icon {
+      font-size: 1.5em;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .category-box h2 {
+      margin: 0;
+      font-size: 1.4em;
+    }
+
+    /* Colores por categoría */
+    .deportes { border: 2px solid #00bfff; box-shadow: 0 0 10px rgba(0,191,255,0.3); color: #00bfff; }
+    .iptv { border: 2px solid #00ff88; box-shadow: 0 0 10px rgba(0,255,136,0.3); color: #00ff88; }
+    .cine { border: 2px solid #ff5555; box-shadow: 0 0 10px rgba(255,85,85,0.3); color: #ff5555; }
+    .multimedia { border: 2px solid #00ffff; box-shadow: 0 0 10px rgba(0,255,255,0.3); color: #00ffff; }
+    .herramientas { border: 2px solid #cccccc; box-shadow: 0 0 10px rgba(255,255,255,0.2); color: #cccccc; }
+    .exploradores { border: 2px solid #ffaa00; box-shadow: 0 0 10px rgba(255,170,0,0.3); color: #ffaa00; }
+    .launchers { border: 2px solid #ff00ff; box-shadow: 0 0 10px rgba(255,0,255,0.3); color: #ff00ff; }
+
+    .category-box:hover span.icon {
+      transform: translateX(5px);
+    }
+
+    .apk-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      max-width: 1200px;
+      margin: 20px auto 40px auto;
+    }
+
+    .apk-item {
+      background-color: #1e1e1e;
+      padding: 15px;
+      border-radius: 10px;
+      transition: transform 0.2s, background-color 0.3s;
+      position: relative; /* Asegura que el addon se posicione correctamente */
+      overflow: hidden; /* Asegura que el badge no se desborde visualmente */
+    }
+
+    .apk-item:hover {
+      transform: scale(1.05);
+      background-color: #2b2b2b;
+    }
+
+    .apk-item img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #00bfff;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .info-box {
+      max-width: 1000px;
+      margin: 50px auto 0;
+      background-color: #1e1e1e;
+      border: 2px solid #00bfff;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+      box-shadow: 0 0 10px rgba(0,191,255,0.3);
+    }
+
+    .info-box h2 {
+      color: #00bfff;
+      margin-top: 0;
+    }
+
+    .info-box p {
+      line-height: 1.6;
+      color: #cccccc;
+    }
+
+    @media (max-width: 1200px) {
+      .apk-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      .apk-item img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>⚡ Programas ⚡</h1>
+
+  <!-- 🏟️ Deportes -->
+  <div class="category-box deportes"><span class="icon">🏟️</span><h2>Deportes</h2></div>
+  <div class="apk-list">
+    <div class="apk-item">
+      <img src="IMG/ARENA4VIEWER.png" alt="Arena4Viewer">
+      <a href="APK/Arena4Viewer v6.8.2b White MOD.apk">⚽ Arena4Viewer McKlaus <br>v6.8.2b White MOD</a>🔴PL(D)
+    </div>
+    <div class="apk-item">
+      <img src="IMG/RBTV77.png" alt="RBTV77">
+      <a href="APK/RBTV77(TV) v1.0.39 McKlaus_Appss MOD.apk">⚽ RBTV77(TV) McKlaus<br>v1.0.39 MOD</a>
+    </div>
+    <div class="apk-item">
+      <img src="IMG/WISEPLAY.png" alt="Wiseplay">
+      <a href="APK/Wiseplay [8.1.1-AndroidTV].apk">📲 Wiseplay <br>v8.1.1-AndroidTV</a>🌍URL🌍<span style="color: #00ff00;">bit.ly/TotalSport3</span>
+    </div>
+  </div>
+
+  <!-- 📺 IPTV -->
+  <div class="category-box iptv"><span class="icon">📺</span><h2>IPTV</h2></div>
+  <div class="apk-list">
+    <div class="apk-item">
+      <img src="IMG/ACESTREAM.png" alt="Ace Stream">
+      <a href="APK/Ace Stream McKlaus_Appss Dark MOD Arm7.apk">🔗 Ace Stream McKlaus <br>Dark MOD Arm7 v3.2.14.2 </a><span style="color:orange;">✅ Downloader Code 8216095</span>
+    </div>
+    <div class="apk-item">
+      <img src="IMG/ACESERVE.png" alt="aceserve">
+      <a href="APK/org.free.aceserve-1.4.1-arm.apk">🔗 AceServe <br>v1.4.1</a>ℹ️ Alternativa Acestream ➕<span style="color: orange;"> VLC</span> 
+    </div>
+    <div class="apk-item">
+      <img src="IMG/M3U_IPTV.png" alt="M3U IPTV">
+      <a href="APK/M3U IPTV v3.0.9 (Premium).apk">🖥️ M3U IPTV <br>v3.0.9 (Premium) </a>🌍URL🌍<span style="color: #00ff00;"> bit.ly/Yoni123</span>
+    </div>
+    <div class="apk-item">
+      <img src="IMG/OTTNAVIGATOR.png" alt="OTT Navigador">
+      <a href="APK/OTT Navigador TV_1.6.apk">🖥️ OTT Navigador TV <br>v1.6 PRO</a>
+    </div>
+    <div class="apk-item">
+      <img src="IMG/SPARKLE.png" alt="sparkle">
+      <a href="APK/Sparkle TV Plus v2.2.0 Mod.apk">🖥️ Sparkle TV Plus<br>v2.2.0 MOD</a>
+    </div>
+  </div>
+
+  <!-- 🎬 Cine -->
+  <div class="category-box cine"><span class="icon">🎬</span><h2>Cine</h2></div>
+  <div class="apk-list">
+    <div class="apk-item">
+      <img src="IMG/DIXMAX.png" alt="Dixmax">
+      <a href="APK/dixmax-v2.4.1.apk">🎬 DixMax <br>v2.4.1</a>
+    </div>
+    <div class="apk-item">
+      <img src="IMG/SMARTUBE.png" alt="Smarttube">
+      <a href="APK/smarttube_stable.apk">🅾️ Smart YouTube <span style="color:grey"><br>[Sin Anuncios]<br>ℹ️ Actualizar App tras instalar</span></a>
+    </div>
+  </div>
+
+  <!-- 💿 Centro Multimedia -->
+  <div class="category-box multimedia"><span class="icon">💿</span><h2>Centro Multimedia</h2></div>
+  <div class="apk-list">
+    <div class="apk-item">
+      <img src="IMG/KODI.png" alt="KODI">
+      <a href="https://mirrors.kodi.tv/releases/android/arm/kodi-21.2-Omega-armeabi-v7a.apk?https=1">💠 KODI <br>v21.2 Omega</a>
+    </div>
+    <div class="apk-item">
+      <div class="addon-badge">ADDON</div>
+      <img src="IMG/KODI - A3P.png" alt="KODI Addon A3Player">
+      <a href="APK/plugin.video.atresplayerchopo">🔗 Repositorio <br>A3Player CHOPO</a>
+    </div>
+    <div class="apk-item">
+      <div class="addon-badge">ADDON</div>
+      <img src="IMG/KODI - MITELE.png" alt="KODI Addon Mitele">
+      <a href="APK/plugin.video.mitelechopo">🔗 Repositorio <br>Mitele CHOPO</a>
+    </div>
+  </div>
+
+  <!-- 🧰 Herramientas -->
+  <div class="category-box herramientas"><span class="icon">🧰</span><h2>Herramientas</h2></div>
+  <div class="apk-list">
+    <div class="apk-item">
+      <img src="IMG/DOWNLOADER.png" alt="Downloader">
+      <a href="APK/Downloader.apk">Downloader</a>
+    </div>
+    <div class="apk-item">
+      <img src="IMG/VLC.png" alt="VLC">
+      <a href="APK/videolan.vlc_3.1.1.apk">▶️ VLC <br>v3.1.1</a>
+    </div>
+  </div>
+
+  <!-- 📂 Exploradores de Archivos -->
+  <div class="category-box exploradores"><span class="icon">📂</span><h2>Exploradores de Archivos</h2></div>
+  <div class="apk-list">
+    <div class="apk-item">
+      <img src="IMG/ES File Explorer.png" alt="ES File Explorer">
+      <a href="APK/ES File Explorer File Manager_4.4.2.2.1.apk">📂 ES File Explorer <br>v4.4.2.2.1</a>
+    </div>
+    <div class="apk-item">
+      <img src="IMG/X-PLORE.png" alt="X-PLORE">
+      <a href="APK/X-plore v4.30.14(Free).apk">📂 X-plore File Manager <br>v4.30.14</a>
+    </div>
+  </div>
+
+  <!-- 🐺 Launchers -->
+  <div class="category-box launchers"><span class="icon">🐺</span><h2>Launchers</h2></div>
+  <div class="apk-list">
+    <div class="apk-item">
+      <img src="IMG/WOLFLAUNCHER.png" alt="Wolf Launcher">
+      <a href="APK/Wolf Launcher_0.1.9-Wolf_.apk">🐺 Wolf Launcher <br>v0.1.9</a>
+    </div>
+    <div class="apk-item">
+      <img src="IMG/ATVLAUNCHER.png" alt="ATV Launcher">
+      <a href="APK/ATV Launcher Pro v0.1.5 Patched McKlaus.apk">🔷 ATV Launcher PRO<br>v0.1.5 Patch McKlaus</a>
+    </div>
+  </div>
+
+  <!-- 🔹 Cuadro de información -->
+  <div class="info-box">
+    <h2>ℹ️ Información de interés</h2>
+    <p>
+      📆 Última actualización: 10 de Noviembre de 2025<br>
+      🔽 Se recomienda instalar Downloader desde la tienda de aplicaciones del dispositivo y añadir url a Favoritos.<br>
+      • Si Acestream da error de WebView, instalar Chrome.<br>
+      • Sparkle hay que habilitar nombres en la Guia EPG tras instalar.<br>
+      • DixMax crear usuario random para entrar.<br>
+      • RBTV77 suele dar error dias de partido importantes.<br>
+      • Si algún enlace no funciona, contacta con el administrador.<br>
+      • Recomendación TEST M3U: ✅ https://www.iptvregion.eu.org/ ✅ http://www.tvappapk.com/
+    </p>
+  </div>
+
+</body>
+</html>
